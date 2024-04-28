@@ -19,13 +19,13 @@ OpenCV is raising funds to keep the library free for everyone, and we need the s
   - [Manylinux wheels](#manylinux-wheels)
   - [Supported Python versions](#supported-python-versions)
   - [Backward compatibility](#backward-compatibility)
-
+---
 ## OpenCV on Wheels
 
 Pre-built CPU-only OpenCV packages for Python.
 
 Check the manual build section if you wish to compile the bindings from source to enable additional modules such as CUDA.
-
+---
 ### Installation and Usage
 
 1. If you have previous/other manually installed (= not installed via ``pip``) version of OpenCV installed (e.g. cv2 module in the root of Python's site-packages), remove it before installation to avoid conflicts.
@@ -50,13 +50,13 @@ Check the manual build section if you wish to compile the bindings from source t
 
     ``import cv2``
 
-    All packages contain Haar cascade files. ``cv2.data.haarcascades`` can be used as a shortcut to the data folder. For example:
+    All packages contain Haar cascade files. ``cv2.data.haarcascades`` can be used as a shortcut to the data folder.
 
-    ``cv2.CascadeClassifier(cv2.data.haarcascades + "haarcascade_frontalface_default.xml")``
+    For example: ``cv2.CascadeClassifier(cv2.data.haarcascades + "haarcascade_frontalface_default.xml")``
 
-5. Read [OpenCV documentation](https://docs.opencv.org/master/)
+6. Read [OpenCV documentation](https://docs.opencv.org/master/)
 
-6. Before opening a new issue, read the FAQ below and have a look at the other issues which are already open.
+7. Before opening a new issue, read the FAQ below and have a look at the other issues which are already open.
 
 Frequently Asked Questions
 --------------------------
@@ -80,7 +80,7 @@ If you have Windows Server 2012+, media DLLs are probably missing too; please in
 If the above does not help, check if you are using Anaconda. Old Anaconda versions have a bug which causes the error, see [this issue](https://github.com/opencv/opencv-python/issues/36) for a manual fix.
 
 If you still encounter the error after you have checked all the previous solutions, download [Dependencies](https://github.com/lucasg/Dependencies) and open the ``cv2.pyd`` (located usually at ``C:\Users\username\AppData\Local\Programs\Python\PythonXX\Lib\site-packages\cv2``) file with it to debug missing DLL issues.
-
+---
 **Q: I have some other import errors?**
 
 A: Make sure you have removed old manual installations of OpenCV Python bindings (cv2.so or cv2.pyd in site-packages).
@@ -96,7 +96,7 @@ A: Non-free algorithms such as SURF are not included in these packages because t
 **Q: Why the package and import are different (opencv-python vs. cv2)?**
 
 A: It's easier for users to understand ``opencv-python`` than ``cv2`` and it makes it easier to find the package with search engines. `cv2` (old interface in old OpenCV versions was named as `cv`) is the name that OpenCV developers chose when they created the binding generators. This is kept as the import name to be consistent with different kind of tutorials around the internet. Changing the import name or behaviour would be also confusing to experienced users who are accustomed to the ``import cv2``.
-
+---
 ## Documentation for opencv-python
 
 [![Windows Build Status](https://github.com/opencv/opencv-python/actions/workflows/build_wheels_windows.yml/badge.svg)](https://github.com/opencv/opencv-python/actions/workflows/build_wheels_windows.yml)
@@ -104,7 +104,7 @@ A: It's easier for users to understand ``opencv-python`` than ``cv2`` and it mak
 [![(Mac OS Build status)](https://github.com/opencv/opencv-python/actions/workflows/build_wheels_macos.yml/badge.svg)](https://github.com/opencv/opencv-python/actions/workflows/build_wheels_macos.yml)
 
 The aim of this repository is to provide means to package each new [OpenCV release](https://github.com/opencv/opencv/releases) for the most used Python versions and platforms.
-
+---
 ### CI build process
 
 The project is structured like a normal Python package with a standard ``setup.py`` file.
@@ -116,18 +116,18 @@ The build process for a single entry in the build matrices is as follows (see fo
 
    -  OpenCV is included as submodule and the version is updated
       manually by maintainers when a new OpenCV release has been made
-   -  Contrib modules are also included as a submodule
+   -  Contribution modules are also included as a submodule
 
 2. Find OpenCV version from the sources
 
-3. Build OpenCV
+3. Build from OpenCV
 
-   -  tests are disabled, otherwise build time increases too much
-   -  there are 4 build matrix entries for each build combination: with and without contrib modules, with and without GUI (headless)
+   -  The tests are disabled, otherwise build time increases too much of it.
+   -  While, there are 4 build matrix entries for each build combination: with and without contrib modules, with and without GUI (headless)
    -  Linux builds run in manylinux Docker containers (CentOS 5)
-   -  source distributions are separate entries in the build matrix
+   -  The source distributions are separate entries in the build matrix
 
-4. Rearrange OpenCV's build result, add our custom files and generate wheel
+4. Rearrange OpenCV's build result, add our custom files and generate wheel.
 
 5. Linux and macOS wheels are transformed with auditwheel and delocate, correspondingly
 
@@ -145,7 +145,7 @@ The build can be customized with environment variables. In addition to any varia
 - ``CMAKE_ARGS``. Additional arguments for OpenCV's CMake invocation. You can use this to make a custom build.
 
 See the next section for more info about manual builds outside the CI environment.
-
+---
 ### Manual builds
 
 If some dependency is not enabled in the pre-built wheels, you can also run the build locally to create a custom wheel.
@@ -160,7 +160,7 @@ If some dependency is not enabled in the pre-built wheels, you can also run the 
 6. Pip will print fresh will location at the end of build procedure. If you use old approach with `setup.py` file wheel package will be placed in `dist` folder. Package is ready and you can do with that whatever you wish.
     - Optional: on Linux use some of the `manylinux` images as a build hosts if maximum portability is needed and run `auditwheel` for the wheel after build
     - Optional: on macOS use ``delocate`` (same as ``auditwheel`` but for macOS) for better portability
-
+---
 #### Manual debug builds
 
 In order to build `opencv-python` in an unoptimized debug build, you need to side-step the normal process a bit.
@@ -178,7 +178,7 @@ python3 setup.py bdist_wheel --build-type=Debug
 ```
 
 See this issue for more discussion: https://github.com/opencv/opencv-python/issues/424
-
+---
 #### Source distributions
 
 Since OpenCV version 4.3.0, also source distributions are provided in PyPI. This means that if your system is not compatible with any of the wheels in PyPI, ``pip`` will attempt to build OpenCV from sources. If you need a OpenCV version which is not available in PyPI as a source distribution, please follow the manual build guidance above instead of this one.
@@ -191,7 +191,7 @@ You can also force ``pip`` to build the wheels from the source distribution. Som
 If you need contrib modules or headless version, just change the package name (step 4 in the previous section is not needed). However, any additional CMake flags can be provided via environment variables as described in step 3 of the manual build section. If none are provided, OpenCV's CMake scripts will attempt to find and enable any suitable dependencies. Headless distributions have hard coded CMake flags which disable all possible GUI dependencies.
 
 On slow systems such as Raspberry Pi the full build may take several hours. On a 8-core Ryzen 7 3700X the build takes about 6 minutes.
-
+---
 ### Licensing
 
 Opencv-python package (scripts in this repository) is available under MIT license.
@@ -205,11 +205,11 @@ All wheels ship with [FFmpeg](http://ffmpeg.org) licensed under the [LGPLv2.1](h
 Non-headless Linux wheels ship with [Qt 5](http://doc.qt.io/qt-5/lgpl.html) licensed under the [LGPLv3](http://www.gnu.org/licenses/lgpl-3.0.html).
 
 The packages include also other binaries. Full list of licenses can be found from [LICENSE-3RD-PARTY.txt](https://github.com/opencv/opencv-python/blob/master/LICENSE-3RD-PARTY.txt).
-
+---
 ### Versioning
 
 ``find_version.py`` script searches for the version information from OpenCV sources and appends also a revision number specific to this repository to the version string. It saves the version information to ``version.py`` file under ``cv2`` in addition to some other flags.
-
+---
 ### Releases
 
 A release is made and uploaded to PyPI when a new tag is pushed to master branch. These tags differentiate packages (this repo might have modifications but OpenCV version stays same) and should be incremented sequentially. In practice, release version numbers look like this:
@@ -217,7 +217,7 @@ A release is made and uploaded to PyPI when a new tag is pushed to master branch
 ``cv_major.cv_minor.cv_revision.package_revision`` e.g. ``3.1.0.0``
 
 The master branch follows OpenCV master branch releases. 3.4 branch follows OpenCV 3.4 bugfix releases.
-
+---
 ### Development builds
 
 Every commit to the master branch of this repo will be built. Possible build artifacts use local version identifiers:
@@ -225,13 +225,13 @@ Every commit to the master branch of this repo will be built. Possible build art
 ``cv_major.cv_minor.cv_revision+git_hash_of_this_repo`` e.g. ``3.1.0+14a8d39``
 
 These artifacts can't be and will not be uploaded to PyPI.
-
+---
 ### Manylinux wheels
 
 Linux wheels are built using [manylinux2014](https://github.com/pypa/manylinux). These wheels should work out of the box for most of the distros (which use GNU C standard library) out there since they are built against an old version of glibc.
 
 The default ``manylinux2014`` images have been extended with some OpenCV dependencies. See [Docker folder](https://github.com/skvark/opencv-python/tree/master/docker) for more info.
-
+---
 ### Supported Python versions
 
 Python 3.x compatible pre-built wheels are provided for the officially supported Python versions (not in EOL):
@@ -241,8 +241,8 @@ Python 3.x compatible pre-built wheels are provided for the officially supported
 - 3.9
 - 3.10
 - 3.11
-- 3.12
-
+- 3.12 (LATEST)
+---
 ### Backward compatibility
 
 Starting from 4.2.0 and 3.4.9 builds the macOS Travis build environment was updated to XCode 9.4. The change effectively dropped support for older than 10.13 macOS versions.

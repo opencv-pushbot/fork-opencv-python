@@ -247,7 +247,11 @@ def main():
                     (r"lib/qt/plugins/wayland-shell-integration/libwl-shell\.so"),
                     (r"lib/qt/plugins/wayland-shell-integration/libxdg-shell\.so"),
                     (r"lib/qt/plugins/wayland-shell-integration/libxdg-shell-v5\.so"),
-                    (r"lib/qt/plugins/wayland-shell-integration/libxdg-shell-v6\.so")
+                    (r"lib/qt/plugins/wayland-shell-integration/libxdg-shell-v6\.so"),
+                    (r"lib/qt/plugins/wayland-graphics-integration-client/libdrm-egl-server.so"),
+                    (r"lib/qt/plugins/wayland-graphics-integration-client/libdmabuf-server.so"),
+                    (r"lib/qt/plugins/wayland-graphics-integration-client/libqt-plugin-wayland-egl.so"),
+                    (r"lib/qt/plugins/wayland-graphics-integration-client/libshm-emulation-server.so")
                 ]
 
                 # add fonts for Qt5

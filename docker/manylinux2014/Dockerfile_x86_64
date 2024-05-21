@@ -6,11 +6,11 @@ FROM quay.io/pypa/manylinux2014_x86_64:latest
 ARG CCACHE_VERSION=3.7.9
 ARG FFMPEG_VERSION=5.1.4
 ARG FREETYPE_VERSION=2.13.2
-ARG LIBPNG_VERSION=1.6.40
-ARG VPX_VERSION=v1.13.1
+ARG LIBPNG_VERSION=1.6.43
+ARG VPX_VERSION=v1.14.0
 ARG NASM_VERSION=2.15.04
 ARG OPENSSL_VERSION=1_1_1w
-ARG QT_VERSION=5.15.0
+ARG QT_VERSION=5.15.13
 ARG YASM_VERSION=1.3.0
 
 ENV LD_LIBRARY_PATH /usr/local/lib:$LD_LIBRARY_PATH
@@ -45,8 +45,8 @@ RUN mkdir ~/freetype_sources && \
     cd .. && \
     rm -rf ~/freetype_sources
 
-RUN curl -O -L https://download.qt.io/official_releases/qt/5.15/${QT_VERSION}/single/qt-everywhere-src-${QT_VERSION}.tar.xz && \
-    tar -xf qt-everywhere-src-${QT_VERSION}.tar.xz && \
+RUN curl -O -L https://download.qt.io/archive/qt/5.15/${QT_VERSION}/single/qt-everywhere-opensource-src-${QT_VERSION}.tar.xz && \
+    tar -xf qt-everywhere-opensource-src-${QT_VERSION}.tar.xz && \
     cd qt-everywhere-src-${QT_VERSION} && \
     export MAKEFLAGS=-j$(nproc) && \
     ./configure -prefix /opt/Qt${QT_VERSION} -release -opensource -confirm-license -qtnamespace QtOpenCVPython -xcb -xcb-xlib -bundled-xcb-xinput -no-openssl -no-dbus -skip qt3d -skip qtactiveqt -skip qtcanvas3d -skip qtconnectivity -skip qtdatavis3d -skip qtdoc -skip qtgamepad -skip qtgraphicaleffects -skip qtimageformats -skip qtlocation -skip qtmultimedia -skip qtpurchasing -skip qtqa -skip qtremoteobjects -skip qtrepotools -skip qtscript -skip qtscxml -skip qtsensors -skip qtserialbus -skip qtserialport -skip qtspeech -skip qttranslations -skip qtwayland -skip qtwebchannel -skip qtwebengine -skip qtwebsockets -skip qtwebview -skip xmlpatterns -skip declarative -make libs && \

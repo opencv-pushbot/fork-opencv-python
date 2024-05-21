@@ -236,7 +236,22 @@ def main():
 
             if sys.platform.startswith("linux"):
                 rearrange_cmake_output_data["cv2.qt.plugins.platforms"] = [
-                    (r"lib/qt/plugins/platforms/libqxcb\.so")
+                    (r"lib/qt/plugins/platforms/libqxcb\.so"),
+
+                    # wayland plugin parts
+                    (r"lib/qt/plugins/platforms/libqwayland-generic\.so"),
+                    (r"lib/qt/plugins/wayland-decoration-client/libbradient\.so"),
+                    (r"lib/qt/plugins/wayland-graphics-integration-client/libshm-emulation-server\.so"),
+                    (r"lib/qt/plugins/wayland-shell-integration/libfullscreen-shell-v1\.so"),
+                    (r"lib/qt/plugins/wayland-shell-integration/libivi-shell\.so"),
+                    (r"lib/qt/plugins/wayland-shell-integration/libwl-shell\.so"),
+                    (r"lib/qt/plugins/wayland-shell-integration/libxdg-shell\.so"),
+                    (r"lib/qt/plugins/wayland-shell-integration/libxdg-shell-v5\.so"),
+                    (r"lib/qt/plugins/wayland-shell-integration/libxdg-shell-v6\.so"),
+                    (r"lib/qt/plugins/wayland-graphics-integration-client/libdrm-egl-server.so"),
+                    (r"lib/qt/plugins/wayland-graphics-integration-client/libdmabuf-server.so"),
+                    (r"lib/qt/plugins/wayland-graphics-integration-client/libqt-plugin-wayland-egl.so"),
+                    (r"lib/qt/plugins/wayland-graphics-integration-client/libshm-emulation-server.so")
                 ]
 
                 # add fonts for Qt5

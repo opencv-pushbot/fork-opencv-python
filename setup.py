@@ -310,7 +310,7 @@ def main():
         cmake_source_dir=cmake_source_dir,
     )
 
-    print("OpenCV is raising funds to keep the library free for everyone, and we need the support of the entire community to do it. Donate to OpenCV on IndieGoGo:\nhttps://www.indiegogo.com/projects/opencv-5-support-non-profit-open-source-cv-ai#/")
+    print("OpenCV is raising funds to keep the library free for everyone, and we need the support of the entire community to do it. Donate to OpenCV on GitHub:\nhttps://github.com/sponsors/opencv\n")
 
 class RearrangeCMakeOutput:
     """

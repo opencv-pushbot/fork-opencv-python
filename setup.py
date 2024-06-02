@@ -118,8 +118,8 @@ def main():
         +
         (
             [r"lib/libOrbbecSDK.dylib", r"lib/libOrbbecSDK.1.9.dylib", r"lib/libOrbbecSDK.1.9.4.dylib"]
-            #if os.name == "Darwin"
-            #else []
+            if os.name == "Darwin"
+            else []
         )
         +
         # In Windows, in python/X.Y/<arch>/; in Linux, in just python/X.Y/.

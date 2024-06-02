@@ -102,7 +102,7 @@ def main():
     package_data = {
         "cv2": ["*%s" % sysconfig.get_config_vars().get("SO"), "version.py"]
         + (["*.dll"] if os.name == "nt" else [])
-        + (["*.dynlib"] if os.name == "Darwin" else [])
+        + (["*.dylib"] if os.name == "Darwin" else [])
         + ["LICENSE.txt", "LICENSE-3RD-PARTY.txt"],
         "cv2.data": ["*.xml"],
     }
@@ -117,7 +117,7 @@ def main():
         )
         +
         (
-            [r"lib/libOrbbecSDK\..*\.dylib"]
+            [r"bin/libOrbbecSDK.*\.dylib"]
             if os.name == "Darwin"
             else []
         )

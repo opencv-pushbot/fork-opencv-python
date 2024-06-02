@@ -117,7 +117,7 @@ def main():
         +
         (
             [r"lib/libOrbbecSDK.dylib", r"lib/libOrbbecSDK.\d.\d.dylib", r"lib/libOrbbecSDK.\d.\d.\d.dylib"]
-            if sys.platform == "darwin" and
+            if sys.platform == "darwin"
             else []
         )
         +

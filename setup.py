@@ -117,7 +117,7 @@ def main():
         +
         (
             [r"lib/libOrbbecSDK.dylib", r"lib/libOrbbecSDK.\d.\d.dylib", r"lib/libOrbbecSDK.\d.\d.\d.dylib"]
-            if platform.system() == "darwin" and platform.machine() == "arm64"
+            if platform.system() == "Darwin" and platform.machine() == "arm64"
             else []
         )
         +

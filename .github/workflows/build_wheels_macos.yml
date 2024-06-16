@@ -3,8 +3,6 @@ name: macOS x86_64
 on:
   pull_request:
     branches:
-      - master
-      - 3.4
       - 4.x
       - 5.x
     paths-ignore:
@@ -27,7 +25,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: ['3.7']
+        python-version: ['3.7', '3.9']
         platform: [x64]
         with_contrib: [0, 1]
         without_gui: [0, 1]
@@ -114,7 +112,7 @@ jobs:
       ACTIONS_ALLOW_UNSECURE_COMMANDS: true
       MB_PYTHON_VERSION: ${{ matrix.python-version }}
       NP_TEST_DEP: numpy==1.19.4
-      NP_TEST_DEP_LATEST: numpy==1.26.0
+      NP_TEST_DEP_LATEST: numpy==2.0.0
       CONFIG_PATH: travis_config.sh
       PLAT: x86_64
       OPENCV_TEST_DATA_PATH: ${{ github.workspace }}/opencv_extra/testdata

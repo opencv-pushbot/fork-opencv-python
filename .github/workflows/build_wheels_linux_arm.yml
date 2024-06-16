@@ -3,8 +3,6 @@ name: Linux ARM64
 on:
   pull_request:
     branches:
-      - master
-      - 3.4
       - 4.x
       - 5.x
     paths-ignore:
@@ -27,7 +25,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: ['3.7']
+        python-version: ['3.7', '3.9']
         platform: [x64]
         with_contrib: [0, 1]
         without_gui: [0, 1]
@@ -94,7 +92,7 @@ jobs:
       MB_PYTHON_VERSION: ${{ matrix.python-version }}
       PLAT: aarch64
       NP_TEST_DEP: numpy==1.19.4
-      NP_TEST_DEP_LATEST: numpy==1.26.0
+      NP_TEST_DEP_LATEST: numpy==2.0.0
       CONFIG_PATH: travis_config.sh
       DOCKER_TEST_IMAGE: multibuild/focal_arm64v8
       UNICODE_WIDTH: 32

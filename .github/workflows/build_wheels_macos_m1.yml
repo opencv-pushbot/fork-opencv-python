@@ -32,6 +32,8 @@ jobs:
       SDIST: ${{ matrix.build_sdist || 0 }}
       ENABLE_HEADLESS: ${{ matrix.without_gui }}
       ENABLE_CONTRIB: ${{ matrix.with_contrib }}
+      PYTHON_VERSION: ${{ matrix.python-version }}
+      MACOSX_DEPLOYMENT_TARGET: 11.0
       PIP_INDEX_URL: https://pypi.tuna.tsinghua.edu.cn/simple
     steps:
     - name: Cleanup
@@ -52,9 +54,9 @@ jobs:
         git submodule update --init multibuild
         echo $ENABLE_CONTRIB > contrib.enabled
         echo $ENABLE_HEADLESS > headless.enabled
-        export MACOSX_DEPLOYMENT_TARGET=11.0
         python${{ matrix.python-version }} -m pip install toml && python${{ matrix.python-version }} -c 'import toml; c = toml.load("pyproject.toml"); print("\n".join(c["build-system"]["requires"]))' | python${{ matrix.python-version }} -m pip install -r /dev/stdin
-        python${{ matrix.python-version }} setup.py bdist_wheel --py-limited-api=cp37 --dist-dir=wheelhouse -v
+        export PYTHON_VERSION=${{ matrix.python-version }}
+        python${{ matrix.python-version }} setup.py bdist_wheel --py-limited-api="cp${PYTHON_VERSION//./}" --dist-dir=wheelhouse -v
         delocate-wheel ${{ github.workspace }}/wheelhouse/opencv*
     - name: Saving all wheels
       uses: actions/upload-artifact@v3

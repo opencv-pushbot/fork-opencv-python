@@ -16,7 +16,7 @@ function bdist_wheel_cmd {
     local abs_wheelhouse=$1
     # install all required packages in pyproject.toml, because bdist_wheel does not do it
     python${PYTHON_VERSION} -m pip install toml && python${PYTHON_VERSION} -c 'import toml; c = toml.load("pyproject.toml"); print("\n".join(c["build-system"]["requires"]))' | python${PYTHON_VERSION} -m pip install -r /dev/stdin
-    CI_BUILD=1 python${PYTHON_VERSION} setup.py bdist_wheel --py-limited-api=cp37 -v
+    CI_BUILD=1 python${PYTHON_VERSION} setup.py bdist_wheel --py-limited-api="cp${PYTHON_VERSION//./}" -v
     cp dist/*.whl $abs_wheelhouse
     if [ -z "$IS_OSX" ]; then
       # this path can be changed in the latest manylinux image

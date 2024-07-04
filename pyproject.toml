@@ -9,5 +9,5 @@ requires = [
   "numpy>=2.0.0;  python_version>='3.9'",
   "pip",
   "scikit-build>=0.14.0",
-  "setuptools==59.2.0",
+  "setuptools>=59.2.0",
 ]

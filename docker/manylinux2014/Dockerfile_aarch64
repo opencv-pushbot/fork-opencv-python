@@ -141,5 +141,3 @@ RUN git config --global --add safe.directory /io
 ENV PKG_CONFIG_PATH /usr/local/lib/pkgconfig:/ffmpeg_build/lib/pkgconfig
 ENV LDFLAGS -L/ffmpeg_build/lib
 ENV PATH "$HOME/bin:$PATH"
-# forces NodeJS 16 for Github actions, see https://github.blog/changelog/2024-03-07-github-actions-all-actions-will-run-on-node20-instead-of-node16-by-default/
-ENV ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true

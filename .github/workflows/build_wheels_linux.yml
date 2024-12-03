@@ -34,7 +34,6 @@ jobs:
         build_sdist: [0]
     env:
       ACTIONS_ALLOW_UNSECURE_COMMANDS: true
-      ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
       REPO_DIR: .
       PROJECT_SPEC: opencv-python
       MB_PYTHON_VERSION: ${{ matrix.python-version }}
@@ -59,10 +58,7 @@ jobs:
           echo "ENABLE_ROLLING=1" >> $GITHUB_ENV
         fi
     - name: Checkout
-      uses: actions/checkout@v3
-      with:
-        submodules: false
-        fetch-depth: 0
+      run: git clone --depth 1 -b ${{ env.SOURCE_BRANCH_NAME }}
     - name: Build a package
       run: source scripts/build.sh
     - name: Saving all wheels
@@ -92,7 +88,6 @@ jobs:
         build_sdist: [0]
     env:
       ACTIONS_ALLOW_UNSECURE_COMMANDS: true
-      ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
       MB_PYTHON_VERSION: ${{ matrix.python-version }}
       NP_TEST_DEP: numpy==1.19.4
       NP_TEST_DEP_LATEST: numpy==2.0.0
@@ -103,10 +98,7 @@ jobs:
       run: find . -mindepth 1 -delete
       working-directory: ${{ github.workspace }}
     - name: Checkout
-      uses: actions/checkout@v3
-      with:
-        submodules: true
-        fetch-depth: 0
+      run: git clone --depth 1 --recurse-submodules -b ${{ env.SOURCE_BRANCH_NAME }}
     - name: Setup Environment variables
       run: if [ "3.10" == "${{ matrix.python-version }}" -o "3.11" == "${{ matrix.python-version }}" -o "3.12" == "${{ matrix.python-version }}" ]; then echo "TEST_DEPENDS=$(echo $NP_TEST_DEP_LATEST)" >> $GITHUB_ENV; else echo "TEST_DEPENDS=$(echo $NP_TEST_DEP)" >> $GITHUB_ENV; fi
     - name: Download a wheel accordingly to matrix
@@ -132,7 +124,6 @@ jobs:
         build_sdist: [1]
     env:
       ACTIONS_ALLOW_UNSECURE_COMMANDS: true
-      ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
       REPO_DIR: .
       PROJECT_SPEC: opencv-python
       PLAT: x86_64
@@ -158,10 +149,7 @@ jobs:
           echo "ENABLE_ROLLING=1" >> $GITHUB_ENV
         fi
     - name: Checkout
-      uses: actions/checkout@v3
-      with:
-        submodules: false
-        fetch-depth: 0
+      run: git clone --depth 1 -b ${{ env.SOURCE_BRANCH_NAME }}
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v4
       with:

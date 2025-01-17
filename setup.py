@@ -261,6 +261,7 @@ def main():
             cmake_args.append("-DWITH_V4L=ON")
             cmake_args.append("-DWITH_LAPACK=ON")
             cmake_args.append("-DENABLE_PRECOMPILED_HEADERS=OFF")
+            cmake_args.append("-DWITH_WAYLAND=ON")
 
     # works via side effect
     RearrangeCMakeOutput(
